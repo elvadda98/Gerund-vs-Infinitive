@@ -3,295 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Practice: -ing vs To-Infinitive</title>
+    <title>English Mastery: Giovanni's Challenge</title>
     <style>
         :root {
-            --primary: #3498db;
-            --correct: #2ecc71;
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --correct: #27ae60;
             --typo: #f1c40f;
             --wrong: #e74c3c;
-            --bg: #f4f7f6;
-            --text: #2c3e50;
+            --bg: #f8f9fa;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             background-color: var(--bg);
-            color: var(--text);
+            color: var(--primary);
+            margin: 0;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
             padding: 20px;
         }
 
-        .container {
-            max-width: 800px;
+        .app-container {
+            max-width: 700px;
             width: 100%;
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            text-align: center;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
         .slide { display: none; }
-        .slide.active { display: block; animation: fadeIn 0.5s; }
+        .active { display: block; animation: slideIn 0.4s ease-out; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        h1 { color: var(--primary); }
-        
-        button {
-            background: var(--primary);
+        h1, h2 { color: var(--accent); }
+        p { line-height: 1.6; }
+
+        .btn {
+            background: var(--accent);
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
+            padding: 12px 28px;
+            border-radius: 50px;
             cursor: pointer;
             font-size: 16px;
-            margin: 10px;
-            transition: 0.3s;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 20px;
         }
 
-        button:hover { opacity: 0.8; }
+        .btn:hover { background: #2980b9; transform: scale(1.05); }
 
-        .word-list {
+        .study-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 10px;
-            margin: 20px 0;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
         }
 
-        .word-item {
-            padding: 10px;
-            background: #ecf0f1;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .exercise-row {
-            text-align: left;
-            margin-bottom: 20px;
+        .word-card {
+            background: #f1f3f5;
             padding: 15px;
-            border-bottom: 1px solid #eee;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .word-card:hover { border-color: var(--accent); }
+
+        .exercise-block {
+            text-align: left;
+            margin-bottom: 25px;
+            padding: 15px;
+            border-left: 4px solid #eee;
         }
 
         input {
-            padding: 8px;
-            border: 2px solid #bdc3c7;
-            border-radius: 5px;
-            width: 150px;
+            border: 2px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 8px;
             font-size: 16px;
+            width: 180px;
+            transition: 0.3s;
         }
 
-        .feedback-pop {
-            font-size: 0.9em;
-            margin-top: 5px;
-            font-style: italic;
+        .explanation {
+            font-size: 14px;
+            color: #666;
+            margin-top: 8px;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
             display: none;
         }
 
-        .correct { border-color: var(--correct) !important; background-color: #eafaf1; }
-        .typo { border-color: var(--typo) !important; background-color: #fef9e7; }
-        .wrong { border-color: var(--wrong) !important; background-color: #fdedec; }
+        /* Status Colors */
+        .correct { border-color: var(--correct); background: #eafaf1; }
+        .typo { border-color: var(--typo); background: #fffde7; }
+        .wrong { border-color: var(--wrong); background: #fdf2f2; }
 
-        .word-bank {
-            background: #fdf2e9;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px dashed #e67e22;
+        .scenario-box {
+            background: #eef2f7;
+            padding: 20px;
+            border-radius: 15px;
             margin-bottom: 20px;
-            font-weight: bold;
+            border: 1px solid #d1d9e6;
         }
 
-        .mic-btn { font-size: 24px; background: #9b59b6; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="slide active" id="slide-1">
-        <h1>Hi Giovanni! 👋</h1>
-        <p>Pronto a dominare la sfida tra <strong>-ing</strong> e <strong>Infinito</strong>?<br>In questa lezione interattiva esploreremo le regole e faremo pratica.</p>
-        <button onclick="nextSlide(2)">Inizia lo Studio</button>
+<div class="app-container">
+    <div class="slide active" id="s1">
+        <h1>Welcome back, Giovanni! 🚀</h1>
+        <p>Dom mi ha detto che stai andando alla grande. Oggi alziamo il livello: <strong>niente aiuti!</strong></p>
+        <p>Dovrai ricordare tu quando usare <em>-ing</em> o <em>to + infinito</em>.</p>
+        <button class="btn" onclick="goTo(2)">Let's start</button>
     </div>
 
-    <div class="slide" id="slide-2">
-        <h2>Vocabulary & Audio 🔊</h2>
-        <p>Clicca sulle parole per ascoltare la pronuncia corretta di un native speaker.</p>
-        <div class="word-list" id="study-list">
-            </div>
-        <button onclick="nextSlide(3)">Vai agli Esercizi</button>
+    <div class="slide" id="s2">
+        <h2>Study List 🔊</h2>
+        <p>Clicca sulle parole per ascoltare la pronuncia (Native Speaker Voice).</p>
+        <div class="study-grid" id="study-list"></div>
+        <button class="btn" onclick="goTo(3)">Challenge 1: Writing</button>
     </div>
 
-    <div class="slide" id="slide-3">
-        <h2>Fill in the Gaps Game ✍️</h2>
-        <div class="word-bank" id="gap-bank"></div>
-        <div id="gap-exercises"></div>
-        <button onclick="checkGaps()">Verifica Risposte</button>
-        <button onclick="nextSlide(4)">Pronunciation Practice</button>
+    <div class="slide" id="s3">
+        <h2>Fill in the Gaps ✍️</h2>
+        <p>Completa le frasi usando il verbo tra parentesi. Niente suggerimenti!</p>
+        <div id="gap-container"></div>
+        <button class="btn" onclick="checkGaps()">Check Answers</button>
+        <button class="btn" onclick="goTo(4)" style="background:#8e44ad">Next Game</button>
     </div>
 
-    <div class="slide" id="slide-4">
-        <h2>Pronunciation Practice 🗣️</h2>
-        <p>Guarda il contesto e prova a dire la frase corretta. <strong>Niente aiuti scritti!</strong></p>
-        <div class="word-bank" id="pron-bank"></div>
-        <div id="pron-exercises"></div>
-        <button onclick="location.reload()">Ricomincia</button>
+    <div class="slide" id="s4">
+        <h2>The Context Challenge 🧠</h2>
+        <p>Scegli l'opzione corretta in base alla situazione descritta.</p>
+        <div id="context-container"></div>
+        <button class="btn" onclick="location.reload()">Reset Lessons</button>
     </div>
 </div>
 
 <script>
     const vocabulary = [
-        { word: 'Enjoy', type: 'ing', note: 'Si usa dopo verbi di gradimento.' },
-        { word: 'Decide', type: 'to', note: 'Si usa per decisioni e piani futuri.' },
-        { word: 'Avoid', type: 'ing', note: 'Si usa sempre con la forma -ing.' },
-        { word: 'Hope', type: 'to', note: 'Esprime un desiderio per il futuro.' },
-        { word: 'Suggest', type: 'ing', note: 'Si usa per proporre un\'idea.' },
-        { word: 'Manage', type: 'to', note: 'Riuscire a fare qualcosa di difficile.' },
-        { word: 'Stop', type: 'both', note: 'Cambia significato se seguito da -ing o to.' },
-        { word: 'Remember', type: 'both', note: 'Cambia significato tra passato e futuro.' }
+        { word: 'Avoid', sound: 'Avoid' }, { word: 'Decide', sound: 'Decide' },
+        { word: 'Enjoy', sound: 'Enjoy' }, { word: 'Hope', sound: 'Hope' },
+        { word: 'Manage', sound: 'Manage' }, { word: 'Suggest', sound: 'Suggest' },
+        { word: 'Remember', sound: 'Remember' }, { word: 'Stop', sound: 'Stop' }
     ];
 
-    const gapSentences = [
-        { text: "I really enjoy _________ (play) tennis.", answer: "playing", why: "Dopo 'Enjoy' si usa sempre la forma -ing." },
-        { text: "We decided _________ (buy) a new car.", answer: "to buy", why: "'Decide' richiede l'infinito con 'to' perché è una scelta futura." },
-        { text: "_________ (smoke) is bad for your health.", answer: "smoking", why: "Quando l'azione è il SOGGETTO della frase, usiamo -ing." },
-        { text: "I'm tired of _________ (wait).", answer: "waiting", why: "Dopo le PREPOSIZIONI (come 'of') si usa sempre -ing." },
-        { text: "I went to the bar _________ (drink) a coffee.", answer: "to drink", why: "Usiamo 'to + infinito' per spiegare lo SCOPO di un'azione (Perché?)." },
-        { text: "He suggested _________ (order) pizza.", answer: "ordering", why: "Dopo 'Suggest' usiamo la forma -ing." },
-        { text: "Avoid _________ (touch) the wet paint.", answer: "touching", why: "'Avoid' è un verbo che vuole sempre la forma -ing." },
-        { text: "I hope _________ (see) you soon.", answer: "to see", why: "'Hope' guarda al futuro, quindi richiede l'infinito con 'to'." }
+    const gapExercises = [
+        { q: "I really enjoy _________ (travel) by train.", a: "travelling", why: "Dopo 'Enjoy' si usa sempre la forma -ing." },
+        { q: "We decided _________ (move) to London.", a: "to move", why: "Il verbo 'Decide' vuole l'infinito per indicare una scelta futura." },
+        { q: "_________ (exercise) is good for your mind.", a: "exercising", why: "Quando il verbo è il SOGGETTO della frase, usiamo -ing." },
+        { q: "I'm looking forward to _________ (meet) you.", a: "meeting", why: "In questa espressione, 'to' è una preposizione, quindi segue -ing." },
+        { q: "She managed _________ (finish) the report.", a: "to finish", why: "'Manage' (riuscire a) richiede sempre 'to + infinito'." },
+        { q: "Stop _________ (make) so much noise!", a: "making", why: "Usa -ing quando vuoi dire di cessare un'attività che stai facendo." },
+        { q: "I went home _________ (eat) something.", a: "to eat", why: "Usiamo 'to' per esprimere lo SCOPO (Perché sei andato a casa?)." },
+        { q: "Avoid _________ (drink) too much coffee.", a: "drinking", why: "Dopo 'Avoid' usiamo sempre la forma -ing." },
+        { q: "I hope _________ (see) you on Tuesday.", a: "to see", why: "'Hope' esprime un desiderio futuro, quindi vuole l'infinito." },
+        { q: "He suggested _________ (go) to the cinema.", a: "going", why: "Dopo 'Suggest' la grammatica richiede la forma -ing." },
+        { q: "Are you interested in _________ (learn) English?", a: "learning", why: "Dopo le preposizioni (in, of, at...) si usa sempre -ing." },
+        { q: "Don't forget _________ (lock) the door.", a: "to lock", why: "'Forget/Remember' + to si usa per azioni future da non dimenticare." }
     ];
 
-    const pronSentences = [
-        { context: "Scenario: Stai pianificando il tuo prossimo viaggio.", target: "I hope to travel soon", bankWord: "to travel" },
-        { context: "Scenario: Ti piace molto nuotare come hobby.", target: "Swimming is my passion", bankWord: "swimming" },
-        { context: "Scenario: Hai deciso di studiare di più.", target: "I decided to study more", bankWord: "to study" }
+    const contextExercises = [
+        {
+            scenario: "Hai il vizio del fumo e decidi di smettere per sempre.",
+            options: ["I stopped smoking", "I stopped to smoke"],
+            correct: 0,
+            why: "'Stop smoking' significa smettere l'azione. 'Stop to smoke' significa fermarsi per fumare."
+        },
+        {
+            scenario: "Stavi camminando e ti sei fermato perché volevi guardare una vetrina.",
+            options: ["I stopped to look", "I stopped looking"],
+            correct: 0,
+            why: "Qui usi 'to' perché indica lo scopo: ti sei fermato PER guardare."
+        },
+        {
+            scenario: "Hai un ricordo di quando eri piccolo e giocavi al parco.",
+            options: ["I remember to play", "I remember playing"],
+            correct: 1,
+            why: "Usa -ing con 'remember' quando ti riferisci a un ricordo del passato."
+        }
     ];
+
+    function goTo(n) {
+        document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+        document.getElementById('s' + n).classList.add('active');
+    }
 
     function speak(text) {
         const msg = new SpeechSynthesisUtterance();
         msg.text = text;
         msg.lang = 'en-US';
-        msg.rate = 0.9;
+        msg.rate = 0.8;
         window.speechSynthesis.speak(msg);
     }
 
-    function init() {
-        // Init Study List
-        const studyDiv = document.getElementById('study-list');
-        vocabulary.forEach(v => {
-            const item = document.createElement('div');
-            item.className = 'word-item';
-            item.innerHTML = `<strong>${v.word}</strong> 🔊`;
-            item.onclick = () => speak(v.word);
-            studyDiv.appendChild(item);
-        });
-
-        // Init Gap Exercises
-        const bank = gapSentences.map(s => s.answer);
-        shuffle(bank);
-        document.getElementById('gap-bank').innerText = "Word Bank: " + bank.join(" | ");
-
-        const gapDiv = document.getElementById('gap-exercises');
-        gapSentences.forEach((s, i) => {
-            const row = document.createElement('div');
-            row.className = 'exercise-row';
-            row.innerHTML = `
-                <p>${i+1}. ${s.text}</p>
-                <input type="text" id="gap-${i}" placeholder="Type here...">
-                <div id="feedback-${i}" class="feedback-pop"></div>
-            `;
-            gapDiv.appendChild(row);
-        });
-
-        // Init Pronunciation
-        const pBank = pronSentences.map(p => p.bankWord);
-        shuffle(pBank);
-        document.getElementById('pron-bank').innerText = "Word Bank: " + pBank.join(" | ");
-        const pronDiv = document.getElementById('pron-exercises');
-        pronSentences.forEach((p, i) => {
-            const row = document.createElement('div');
-            row.className = 'exercise-row';
-            row.innerHTML = `
-                <p><strong>Context:</strong> ${p.context}</p>
-                <button class="mic-btn" onclick="startSpeech(${i})">🎤 Tap & Speak</button>
-                <div id="pron-feedback-${i}" class="feedback-pop"></div>
-            `;
-            pronDiv.appendChild(row);
-        });
-    }
-
-    function shuffle(array) {
-        array.sort(() => Math.random() - 0.5);
-    }
-
-    function nextSlide(n) {
-        document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-        document.getElementById('slide-' + n).classList.add('active');
-    }
-
     function levenshtein(a, b) {
-        if(a.length == 0) return b.length; 
-        if(b.length == 0) return a.length; 
-        var matrix = [];
-        for(var i = 0; i <= b.length; i++){ matrix[i] = [i]; }
-        for(var j = 0; j <= a.length; j++){ matrix[0][j] = j; }
-        for(i = 1; i <= b.length; i++){
-            for(j = 1; j <= a.length; j++){
-                if(b.charAt(i-1) == a.charAt(j-1)){ matrix[i][j] = matrix[i-1][j-1]; } 
-                else { matrix[i][j] = Math.min(matrix[i-1][j-1] + 1, Math.min(matrix[i][j-1] + 1, matrix[i-1][j] + 1)); }
-            }
-        }
-        return matrix[b.length][a.length];
+        if(!a || !b) return 99;
+        const m = [], al = a.length, bl = b.length;
+        for (let i = 0; i <= al; i++) m[i] = [i];
+        for (let j = 1; j <= bl; j++) m[0][j] = j;
+        for (let i = 1; i <= al; i++)
+            for (let j = 1; j <= bl; j++)
+                m[i][j] = Math.min(m[i-1][j-1] + (a[i-1] !== b[j-1]), m[i][j-1] + 1, m[i-1][j] + 1);
+        return m[al][bl];
     }
+
+    // Initialize
+    window.onload = () => {
+        const list = document.getElementById('study-list');
+        vocabulary.forEach(v => {
+            const d = document.createElement('div');
+            d.className = 'word-card';
+            d.innerHTML = `<strong>${v.word}</strong> 🔊`;
+            d.onclick = () => speak(v.word);
+            list.appendChild(d);
+        });
+
+        const gapCont = document.getElementById('gap-container');
+        gapExercises.forEach((ex, i) => {
+            const d = document.createElement('div');
+            d.className = 'exercise-block';
+            d.innerHTML = `
+                <p>${i+1}. ${ex.q}</p>
+                <input type="text" id="in-${i}">
+                <div id="exp-${i}" class="explanation"></div>
+            `;
+            gapCont.appendChild(d);
+        });
+
+        const ctxCont = document.getElementById('context-container');
+        contextExercises.forEach((ex, i) => {
+            const d = document.createElement('div');
+            d.className = 'scenario-box';
+            d.innerHTML = `
+                <p><strong>Scenario:</strong> ${ex.scenario}</p>
+                ${ex.options.map((opt, optIdx) => `
+                    <button class="btn" style="background:#95a5a6; margin:5px" onclick="checkCtx(${i}, ${optIdx}, this)">
+                        ${opt}
+                    </button>
+                `).join('')}
+                <div id="ctx-exp-${i}" class="explanation"></div>
+            `;
+            ctxCont.appendChild(d);
+        });
+    };
 
     function checkGaps() {
-        gapSentences.forEach((s, i) => {
-            const input = document.getElementById('gap-' + i);
-            const feedback = document.getElementById('feedback-' + i);
+        gapExercises.forEach((ex, i) => {
+            const input = document.getElementById('in-' + i);
+            const exp = document.getElementById('exp-' + i);
             const val = input.value.trim().toLowerCase();
-            const target = s.answer.toLowerCase();
+            const ans = ex.a.toLowerCase();
             
-            feedback.style.display = 'block';
-            feedback.innerHTML = `<strong>Why?</strong> ${s.why}`;
+            exp.style.display = 'block';
+            exp.innerHTML = `<strong>Why?</strong> ${ex.why}`;
 
-            if (val === target) {
+            if (val === ans) {
                 input.className = 'correct';
-            } else if (levenshtein(val, target) <= 2 && val.length > 3) {
+            } else if (levenshtein(val, ans) <= 2) {
                 input.className = 'typo';
-                feedback.innerHTML = `<em>Typo! Correct spelling: <strong>${s.answer}</strong></em><br>` + feedback.innerHTML;
+                exp.innerHTML = `<span style="color:#d4ac0d">Typo! Correct spelling: <strong>${ex.a}</strong></span><br>` + exp.innerHTML;
             } else {
                 input.className = 'wrong';
             }
         });
     }
 
-    function startSpeech(i) {
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = 'en-US';
-        recognition.start();
-
-        recognition.onresult = (event) => {
-            const speechResult = event.results[0][0].transcript.toLowerCase();
-            const feedback = document.getElementById('pron-feedback-' + i);
-            feedback.style.display = 'block';
-            
-            const target = pronSentences[i].target.toLowerCase();
-            if (speechResult.includes(pronSentences[i].bankWord.toLowerCase())) {
-                feedback.innerHTML = `<span style="color:green">Well done! You said: "${speechResult}"</span>`;
-            } else {
-                feedback.innerHTML = `<span style="color:red">Almost! Try focusing on the structure "${pronSentences[i].bankWord}". You said: "${speechResult}"</span>`;
-            }
-        };
+    function checkCtx(qIdx, optIdx, btn) {
+        const ex = contextExercises[qIdx];
+        const exp = document.getElementById('ctx-exp-' + qIdx);
+        exp.style.display = 'block';
+        exp.innerHTML = `<strong>Explanation:</strong> ${ex.why}`;
+        
+        if (optIdx === ex.correct) {
+            btn.style.background = 'var(--correct)';
+        } else {
+            btn.style.background = 'var(--wrong)';
+        }
     }
-
-    window.onload = init;
 </script>
 
 </body>
